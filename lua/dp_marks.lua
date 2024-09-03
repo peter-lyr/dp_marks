@@ -28,7 +28,7 @@ function M.has_marks()
   if #marks > 0 then
     table.insert(marks, 1, string.format('%d marks', #marks))
     B.set_timeout(100, function()
-      B.notify_info_append(marks, 1000 * 60 * 60 * 24)
+      B.notify_info(marks, 1000 * 60 * 60 * 24)
     end)
     return 1
   end
@@ -58,6 +58,8 @@ require 'marks'.setup {
 
 require 'which-key'.register {
   ['<leader>mm'] = { name = 'marks', },
+  ['<leader>mj'] = { function() M.next() end, 'marks: next', mode = { 'n', 'v', }, silent = true, },
+  ['<leader>mk'] = { function() M.prev() end, 'marks: prev', mode = { 'n', 'v', }, silent = true, },
   ['<leader>mmj'] = { function() M.next() end, 'marks: next', mode = { 'n', 'v', }, silent = true, },
   ['<leader>mmk'] = { function() M.prev() end, 'marks: prev', mode = { 'n', 'v', }, silent = true, },
   ['<leader>mmn'] = { function() require 'marks'.set_next() end, 'marks: set_next', mode = { 'n', 'v', }, silent = true, },
